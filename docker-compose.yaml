@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  database:
+    image: "postgres:13.14-alpine3.19"
+    env_file: ".env"
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - "database:/var/lib/postgresql/data"
+
+volumes:
+  database: { }
