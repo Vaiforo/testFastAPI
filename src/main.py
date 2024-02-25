@@ -1,25 +1,14 @@
 from fastapi import FastAPI
 from functools import cache
 import uvicorn
+from src.tasks.routes import router
 
 
 @cache
 def app_factory() -> FastAPI:
     app = FastAPI()
 
-    @app.get('/')
-    def root() -> str:
-        return "Hello, FastAPI!"
-
-    @app.get("/tasks")
-    def list_tasks():
-        return [
-            {
-                "id": 123,
-                "title": "Test",
-                "description": "description test"
-            }
-        ]
+    app.include_router(router)
 
     return app
 
